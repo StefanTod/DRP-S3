@@ -28,29 +28,33 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
+            this.components = new System.ComponentModel.Container();
+            this.bt_run = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.bt_example = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.trackBar1 = new System.Windows.Forms.TrackBar();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
+            this.cb_algorithm = new System.Windows.Forms.ComboBox();
+            this.tb_disk = new System.Windows.Forms.TrackBar();
+            this.lb_disk = new System.Windows.Forms.ListBox();
+            this.tb_processed = new System.Windows.Forms.TextBox();
+            this.timerRun = new System.Windows.Forms.Timer(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.tb_disk)).BeginInit();
             this.SuspendLayout();
             // 
-            // button1
+            // bt_run
             // 
-            this.button1.Location = new System.Drawing.Point(265, 98);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Run";
-            this.button1.UseVisualStyleBackColor = true;
+            this.bt_run.Location = new System.Drawing.Point(265, 98);
+            this.bt_run.Name = "bt_run";
+            this.bt_run.Size = new System.Drawing.Size(75, 23);
+            this.bt_run.TabIndex = 0;
+            this.bt_run.Text = "Run";
+            this.bt_run.UseVisualStyleBackColor = true;
+            this.bt_run.Click += new System.EventHandler(this.bt_run_Click);
             // 
             // button2
             // 
@@ -60,15 +64,17 @@
             this.button2.TabIndex = 1;
             this.button2.Text = "Stop";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // button3
+            // bt_example
             // 
-            this.button3.Location = new System.Drawing.Point(265, 127);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(156, 23);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "Example";
-            this.button3.UseVisualStyleBackColor = true;
+            this.bt_example.Location = new System.Drawing.Point(265, 127);
+            this.bt_example.Name = "bt_example";
+            this.bt_example.Size = new System.Drawing.Size(156, 23);
+            this.bt_example.TabIndex = 2;
+            this.bt_example.Text = "Example";
+            this.bt_example.UseVisualStyleBackColor = true;
+            this.bt_example.Click += new System.EventHandler(this.bt_example_Click);
             // 
             // button4
             // 
@@ -107,7 +113,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(126, 82);
+            this.label3.Location = new System.Drawing.Point(126, 55);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(55, 13);
             this.label3.TabIndex = 7;
@@ -122,50 +128,64 @@
             this.label4.TabIndex = 8;
             this.label4.Text = "Disk Tracks";
             // 
-            // comboBox1
+            // cb_algorithm
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(265, 71);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 9;
+            this.cb_algorithm.FormattingEnabled = true;
+            this.cb_algorithm.Location = new System.Drawing.Point(265, 71);
+            this.cb_algorithm.Name = "cb_algorithm";
+            this.cb_algorithm.Size = new System.Drawing.Size(121, 21);
+            this.cb_algorithm.TabIndex = 9;
+            this.cb_algorithm.SelectedIndexChanged += new System.EventHandler(this.cb_algorithm_SelectedIndexChanged);
             // 
-            // trackBar1
+            // tb_disk
             // 
-            this.trackBar1.Location = new System.Drawing.Point(44, 117);
-            this.trackBar1.Name = "trackBar1";
-            this.trackBar1.Orientation = System.Windows.Forms.Orientation.Vertical;
-            this.trackBar1.Size = new System.Drawing.Size(45, 344);
-            this.trackBar1.TabIndex = 11;
+            this.tb_disk.Location = new System.Drawing.Point(44, 117);
+            this.tb_disk.Name = "tb_disk";
+            this.tb_disk.Orientation = System.Windows.Forms.Orientation.Vertical;
+            this.tb_disk.Size = new System.Drawing.Size(45, 344);
+            this.tb_disk.TabIndex = 11;
             // 
-            // listBox1
+            // lb_disk
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(129, 117);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(95, 342);
-            this.listBox1.TabIndex = 12;
+            this.lb_disk.FormattingEnabled = true;
+            this.lb_disk.Location = new System.Drawing.Point(129, 117);
+            this.lb_disk.Name = "lb_disk";
+            this.lb_disk.Size = new System.Drawing.Size(95, 342);
+            this.lb_disk.TabIndex = 12;
+            // 
+            // tb_processed
+            // 
+            this.tb_processed.Location = new System.Drawing.Point(129, 82);
+            this.tb_processed.Name = "tb_processed";
+            this.tb_processed.Size = new System.Drawing.Size(95, 20);
+            this.tb_processed.TabIndex = 13;
+            // 
+            // timerRun
+            // 
+            this.timerRun.Interval = 1000;
+            this.timerRun.Tick += new System.EventHandler(this.timerRun_Tick);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(463, 514);
-            this.Controls.Add(this.listBox1);
-            this.Controls.Add(this.trackBar1);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.tb_processed);
+            this.Controls.Add(this.lb_disk);
+            this.Controls.Add(this.tb_disk);
+            this.Controls.Add(this.cb_algorithm);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
+            this.Controls.Add(this.bt_example);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.bt_run);
             this.Name = "Form1";
             this.Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tb_disk)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -173,18 +193,20 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button bt_run;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button bt_example;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.TrackBar trackBar1;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ComboBox cb_algorithm;
+        private System.Windows.Forms.TrackBar tb_disk;
+        private System.Windows.Forms.ListBox lb_disk;
+        private System.Windows.Forms.TextBox tb_processed;
+        private System.Windows.Forms.Timer timerRun;
     }
 }
 
