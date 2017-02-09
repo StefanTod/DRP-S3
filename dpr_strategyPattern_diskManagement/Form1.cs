@@ -24,6 +24,8 @@ namespace dpr_strategyPattern_diskManagement
             cb_algorithm.Items.AddRange(Enum.GetNames(typeof(Algorithm)));
             disk = new DiskScheduler();
             algorithmStrategy = new ScanStrategy(tb_disk.Value, DiskScheduler.diskSize);
+
+            tb_disk.TickStyle = TickStyle.Both;
         }
 
         private void bt_run_Click(object sender, EventArgs e)
@@ -74,9 +76,31 @@ namespace dpr_strategyPattern_diskManagement
                 case Algorithm.SCAN :
                     algorithmStrategy = new ScanStrategy(tb_disk.Value, DiskScheduler.diskSize);
                     break;
+                case Algorithm.SSTF :
+                    algorithmStrategy = new SSTFStrategy(tb_disk.Value);
+                    break;
                 default:
                     MessageBox.Show("Not implemented algorithm");
                     break;
+            }
+        }
+        
+        private void button4_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int numb = Convert.ToInt32(tb_add.Text);
+                if (numb < 0 || numb > DiskScheduler.diskSize)
+                {
+                    MessageBox.Show("Number is out of range: 0 - " + DiskScheduler.diskSize.ToString());
+                    return;
+                }
+                disk.AddToQueue(numb);
+                UpdateList();
+            }
+            catch (System.FormatException ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
     }

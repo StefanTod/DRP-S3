@@ -33,7 +33,7 @@
             this.button2 = new System.Windows.Forms.Button();
             this.bt_example = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tb_add = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -84,13 +84,14 @@
             this.button4.TabIndex = 3;
             this.button4.Text = "Add";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
-            // textBox1
+            // tb_add
             // 
-            this.textBox1.Location = new System.Drawing.Point(346, 158);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(75, 20);
-            this.textBox1.TabIndex = 4;
+            this.tb_add.Location = new System.Drawing.Point(346, 158);
+            this.tb_add.Name = "tb_add";
+            this.tb_add.Size = new System.Drawing.Size(75, 20);
+            this.tb_add.TabIndex = 4;
             // 
             // label1
             // 
@@ -139,6 +140,7 @@
             // 
             // tb_disk
             // 
+            this.tb_disk.Enabled = false;
             this.tb_disk.Location = new System.Drawing.Point(44, 117);
             this.tb_disk.Name = "tb_disk";
             this.tb_disk.Orientation = System.Windows.Forms.Orientation.Vertical;
@@ -178,7 +180,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.tb_add);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.bt_example);
             this.Controls.Add(this.button2);
@@ -197,7 +199,7 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button bt_example;
         private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox tb_add;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
