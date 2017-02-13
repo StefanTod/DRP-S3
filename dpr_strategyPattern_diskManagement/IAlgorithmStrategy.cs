@@ -13,6 +13,6 @@ namespace dpr_strategyPattern_diskManagement
         /// </summary>
         /// <param name="positionIndex"></param>
         /// <returns>index of next number, case list is empty returns -1</returns>
-        int Next(List<int> diskQueue);
+        int Next(List<int> diskQueue, System.Windows.Forms.TrackBar tracBar);
     }
 }

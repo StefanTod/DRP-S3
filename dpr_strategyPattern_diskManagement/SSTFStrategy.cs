@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace dpr_strategyPattern_diskManagement
 {
@@ -15,7 +16,7 @@ namespace dpr_strategyPattern_diskManagement
             this.position = position;
         }
 
-        public int Next(List<int> diskQueue)
+        public int Next(List<int> diskQueue, TrackBar tracBar)
         {
             int shortestDist = 10000000;
             int indexOfShortest = 0;

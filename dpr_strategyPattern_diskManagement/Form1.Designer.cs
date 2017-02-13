@@ -43,6 +43,8 @@
             this.lb_disk = new System.Windows.Forms.ListBox();
             this.tb_processed = new System.Windows.Forms.TextBox();
             this.timerRun = new System.Windows.Forms.Timer(this.components);
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.tb_disk)).BeginInit();
             this.SuspendLayout();
             // 
@@ -167,11 +169,31 @@
             this.timerRun.Interval = 1000;
             this.timerRun.Tick += new System.EventHandler(this.timerRun_Tick);
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(13, 446);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(13, 13);
+            this.label5.TabIndex = 14;
+            this.label5.Text = "0";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(13, 117);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(25, 13);
+            this.label6.TabIndex = 15;
+            this.label6.Text = "100";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(463, 514);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.tb_processed);
             this.Controls.Add(this.lb_disk);
             this.Controls.Add(this.tb_disk);
@@ -209,6 +231,8 @@
         private System.Windows.Forms.ListBox lb_disk;
         private System.Windows.Forms.TextBox tb_processed;
         private System.Windows.Forms.Timer timerRun;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
     }
 }
 

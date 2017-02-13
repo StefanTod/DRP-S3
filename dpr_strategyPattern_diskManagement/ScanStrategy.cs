@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace dpr_strategyPattern_diskManagement
 {
     class ScanStrategy : IAlgorithmStrategy
     {
-        enum Direction { UP, DOWN}
+        enum Direction { UP, DOWN }
         private int position;
         private int diskSize;
         private Direction direction = Direction.UP;
@@ -19,7 +20,19 @@ namespace dpr_strategyPattern_diskManagement
             this.diskSize = diskSize;
         }
 
-        public int Next(List<int> diskQueue)
+        private int Do(List<int> queue, int pos)
+        {
+            for (int i = 0; i < queue.Count; i++)
+            {
+                if (queue[i] == position)
+                {
+                    return i;
+                }
+            }
+            return -1;
+        }
+
+        public int Next(List<int> diskQueue, TrackBar tracBar)
         {
             int index;
             while (true)
@@ -49,19 +62,14 @@ namespace dpr_strategyPattern_diskManagement
                 index = Do(diskQueue, position);
                 if (index != -1)
                     return index;
+                AnimateNext(tracBar);
             }
         }
 
-        private int Do(List<int> queue, int pos)
+        public void AnimateNext(TrackBar target)
         {
-            for (int i = 0; i < queue.Count; i++)
-            {
-                if (queue[i] == position)
-                {
-                    return i;
-                }
-            }
-            return -1;
+            target.Value = position;
+            target.Invalidate();
         }
 
         //public int Next(List<int> diskQueue)
@@ -82,7 +90,7 @@ namespace dpr_strategyPattern_diskManagement
         //    {
         //        //TODO
         //        GetIndexOfClosestDown(diskQueue);
-                
+
         //    }
         //    return indexSmallestDist;
         //}

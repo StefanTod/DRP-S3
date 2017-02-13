@@ -41,18 +41,26 @@ namespace dpr_strategyPattern_diskManagement
 
         private void timerRun_Tick(object sender, EventArgs e)
         {
-            int index = disk.AlgorithmGetNext(algorithmStrategy);
-            if (index == -1)
+            try
+            {
+                int removed = disk.AlgorithmGetNext(tb_disk);
+                if (removed == -1)
+                {
+                    timerRun.Enabled = false;
+                    tb_processed.Text = string.Empty;
+                }
+                else
+                {
+                    tb_processed.Text = removed.ToString();
+                    tb_disk.Value = removed;
+                    UpdateList();
+                }
+            }
+            catch (System.NullReferenceException ex)
             {
                 timerRun.Enabled = false;
-                tb_processed.Text = string.Empty;
-                return;
+                MessageBox.Show("You need to choose algorithm from \"Algorithm dropdown menu\" \n Exception message: " + ex.Message);
             }
-            int pos = disk.diskQueue[index];
-            tb_processed.Text = pos.ToString();
-            disk.diskQueue.RemoveAt(index);
-            tb_disk.Value = pos;
-            UpdateList();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -71,13 +79,13 @@ namespace dpr_strategyPattern_diskManagement
             switch ((Algorithm)cb_algorithm.SelectedIndex)
             {
                 case Algorithm.FIFO :
-                    algorithmStrategy = new FIFOStrategy();
+                    disk.algorithmStrategy = new FIFOStrategy();
                     break;
                 case Algorithm.SCAN :
-                    algorithmStrategy = new ScanStrategy(tb_disk.Value, DiskScheduler.diskSize);
+                    disk.algorithmStrategy = new ScanStrategy(tb_disk.Value, DiskScheduler.diskSize);
                     break;
                 case Algorithm.SSTF :
-                    algorithmStrategy = new SSTFStrategy(tb_disk.Value);
+                    disk.algorithmStrategy = new SSTFStrategy(tb_disk.Value);
                     break;
                 default:
                     MessageBox.Show("Not implemented algorithm");

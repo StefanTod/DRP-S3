@@ -11,6 +11,7 @@ namespace dpr_strategyPattern_diskManagement
         private static int generatedLength = 15;
         public static int diskSize = 100;
         public List<int> diskQueue;
+        public IAlgorithmStrategy algorithmStrategy;
 
         public List<int> GetDiskQueue()
         {
@@ -36,11 +37,14 @@ namespace dpr_strategyPattern_diskManagement
             }
         }
 
-        public int AlgorithmGetNext(IAlgorithmStrategy algorithmStrategy)
+        public int AlgorithmGetNext(System.Windows.Forms.TrackBar target)
         {
             if (diskQueue.Count > 0)
             {
-                return algorithmStrategy.Next(diskQueue);
+                int index = algorithmStrategy.Next(diskQueue, target);
+                int removed = diskQueue[index];
+                diskQueue.RemoveAt(index);
+                return removed;
             }
             return -1;
         }        
